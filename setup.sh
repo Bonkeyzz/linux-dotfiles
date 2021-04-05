@@ -22,8 +22,3 @@ PLUGINS_DIR="/usr/share/zsh/plugins"
 # Install zsh-autosuggestions plugin
 [ ! -d "$PLUGINS_DIR/zsh-autosuggestions" ] && \
 	sudo git clone https://github.com/zsh-users/zsh-autosuggestions $PLUGINS_DIR/zsh-autosuggestions || echo "Plugin: zsh-autosuggestions is already installed."
-
-# Install zsh-abbr plugin
-[ ! -d "$PLUGINS_DIR/zsh-abbr" ] && \
-	sudo git clone https://github.com/olets/zsh-abbr $PLUGINS_DIR/zsh-abbr || echo "Plugin: zsh-abbr is already installed."
-
