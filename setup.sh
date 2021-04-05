@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Move current zshrc to the home directory
-cp .zshrc ~/.zshrc
+cp zshrc ~/.zshrc
 
 # Make a plugins folder
 [ ! -d "/usr/share/zsh/plugins" ] && sudo mkdir /usr/share/zsh/plugins
