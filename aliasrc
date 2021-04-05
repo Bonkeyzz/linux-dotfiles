@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Based from Mental Outlaws aliasrc
+
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
+
+alias \
+	myip="curl ipinfo.io/ip" \
+	untar="tar -zxvf" \
+	sha="shasum -a 256" \
+	cp="cp -iv" \
+	cl="clear" \
+	rm="rm -v" \
+	mv="mv -iv" \
+	g="git" \
