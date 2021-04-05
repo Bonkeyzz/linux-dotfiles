@@ -1,17 +1,29 @@
 #!/bin/bash
 
-# Move current zshrc to the home directory
+# Remove existing dotfiles
+rm ~/.zshrc
+rm ~/.config/.aliasrc
+
+# Copy current zshrc to the home directory
 cp zshrc ~/.zshrc
 
+# Copy current aliasrc to the .config directory
+cp aliasrc ~/.config/.aliasrc
+
+PLUGINS_DIR="/usr/share/zsh/plugins"
+
 # Make a plugins folder
-[ ! -d "/usr/share/zsh/plugins" ] && sudo mkdir /usr/share/zsh/plugins
+[ ! -d "$PLUGINS_DIR" ] && sudo mkdir /usr/share/zsh/plugins
 
 # Install zsh-syntax-highlighting plugin
-sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting /usr/share/zsh/plugins/zsh-syntax-highlighting
+[ ! -d "$PLUGINS_DIR/zsh-syntax-highlighting" ] && \
+	sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting $PLUGINS_DIR/zsh-syntax-highlighting || echo "Plugin: zsh-syntax-highlighting is already installed."
 
 # Install zsh-autosuggestions plugin
-sudo git clone https://github.com/zsh-users/zsh-autosuggestions /usr/share/zsh/plugins/zsh-autosuggestions
+[ ! -d "$PLUGINS_DIR/zsh-autosuggestions" ] && \
+	sudo git clone https://github.com/zsh-users/zsh-autosuggestions $PLUGINS_DIR/zsh-autosuggestions || echo "Plugin: zsh-autosuggestions is already installed."
 
 # Install zsh-abbr plugin
-sudo git clone https://github.com/olets/zsh-abbr /usr/share/zsh/plugins/zsh-abbr
+[ ! -d "$PLUGINS_DIR/zsh-abbr" ] && \
+	sudo git clone https://github.com/olets/zsh-abbr $PLUGINS_DIR/zsh-abbr || echo "Plugin: zsh-abbr is already installed."
 
