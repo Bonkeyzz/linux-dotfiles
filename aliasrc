@@ -13,3 +13,4 @@ alias \
 	rm="rm -v" \
 	mv="mv -iv" \
 	g="git" \
+	pman="sudo pacman -S" \
