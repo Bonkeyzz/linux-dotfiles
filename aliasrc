@@ -2,7 +2,6 @@
 
 # Based from Mental Outlaws aliasrc
 
-# Use neovim whenever possible
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
 
 alias \
@@ -18,4 +17,5 @@ alias \
 	pman="sudo pacman -S" \
 	pmanr="sudo pacman -R" \
 	vialias="nvim ~/.config/.aliasrc" \
-	vizshrc="nvim ~/.zshrc"
+	vizshrc="nvim ~/.zshrc" \
+	ls="ls --color=tty" \
