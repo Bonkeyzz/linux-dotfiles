@@ -9,6 +9,10 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 
+# Exports
+
+export EDITOR="nvim"
+
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
