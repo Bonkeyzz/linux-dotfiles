@@ -13,6 +13,7 @@ setopt promptpercent
 zstyle ':vcs_info:git:*' formats '%b'
 
 GIT_PROMPT_FORMAT=""
+RET_CODE_FORMAT=""
 
 function format_git_prompt() {
 	vcs_info
@@ -26,10 +27,27 @@ function format_git_prompt() {
 	}
 	fi
 }
-precmd() { format_git_prompt }
+
+function check_last_exit_code() {
+  local LAST_EXIT_CODE=$?
+  local EXIT_CODE=' '
+  if [[ $LAST_EXIT_CODE -ne 0 ]]; 
+  then
+	  EXIT_CODE="%{$fg[red]%}[$LAST_EXIT_CODE]%{$reset_color%}"
+   else
+	  EXIT_CODE="%{$fg[green]%}[$LAST_EXIT_CODE]%{$reset_color%}"
+  fi
+  echo "$EXIT_CODE"
+}
+
+precmd() { 
+	format_git_prompt 
+}
+
+
 
 PROMPT='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]$GIT_PROMPT_FORMAT%{$reset_color%}$%b '
-
+RPROMPT='$(check_last_exit_code)'
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
