@@ -14,8 +14,14 @@ alias \
 	mv="mv -iv" \
 	mkdir="mkdir -pv" \
 	g="git" \
-	pman="sudo pacman -S" \
-	pmanr="sudo pacman -R" \
+	ga="git add" \
+	gc="git commit" \
+	gp="git push" \
+	gs="git status" \
+	gcl="git clone" \
+	gd="git diff" \ 
+	pmadd="sudo pacman -S" \
+	pmare="sudo pacman -R" \
 	vialias="nvim ~/.config/.aliasrc" \
 	vizshrc="nvim ~/.zshrc" \
 	ls="ls --color=tty" \
