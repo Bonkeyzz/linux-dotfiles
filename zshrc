@@ -8,6 +8,8 @@ autoload -U vcs_info
 
 # autoload -Uz vcs_info
 setopt PROMPT_SUBST
+setopt promptsubst
+setopt promptpercent
 zstyle ':vcs_info:git:*' formats '%b'
 
 GIT_PROMPT_FORMAT=""
@@ -17,7 +19,7 @@ function format_git_prompt() {
 
 	if [ $vcs_info_msg_0_ ]
 	then {
-		GIT_PROMPT_FORMAT="$fg[red][ $fg[yellow]${vcs_info_msg_0_}$fg[red]]"
+		GIT_PROMPT_FORMAT="%{$fg[red]%}[%{$fg[yellow]%} ${vcs_info_msg_0_}%{$fg[red]%}]"
 	}
 	else {
 		GIT_PROMPT_FORMAT=""
