@@ -2,7 +2,31 @@
 
 # Enable colors and change prompt:
 autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+autoload -U vcs_info
+
+# Load version control information
+
+# autoload -Uz vcs_info
+setopt PROMPT_SUBST
+zstyle ':vcs_info:git:*' formats '%b'
+
+GIT_PROMPT_FORMAT=""
+
+function format_git_prompt() {
+	vcs_info
+
+	if [ $vcs_info_msg_0_ ]
+	then {
+		GIT_PROMPT_FORMAT="$fg[red][ $fg[yellow]${vcs_info_msg_0_}$fg[red]]"
+	}
+	else {
+		GIT_PROMPT_FORMAT=""
+	}
+	fi
+}
+precmd() { format_git_prompt }
+
+PROMPT='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]$GIT_PROMPT_FORMAT%{$reset_color%}$%b '
 
 # History in cache directory:
 HISTSIZE=10000
