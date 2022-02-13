@@ -19,7 +19,7 @@ alias \
 	gp="git push" \
 	gs="git status" \
 	gcl="git clone" \
-	gd="git diff" \ 
+	gd="git diff" \
 	pmadd="sudo pacman -S" \
 	pmare="sudo pacman -R" \
 	vialias="nvim ~/.config/.aliasrc" \
