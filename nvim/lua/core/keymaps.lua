@@ -41,7 +41,6 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<C-u>", "ddkP", opts)
 keymap("n", "<C-j>", "ddjP", opts)
 
-
 -- Exitting/Saving
 keymap("n", "<leader>qq", ":qa!<CR>", opts)
 keymap("n", "<leader>wq", ":wq!<CR>", opts)
