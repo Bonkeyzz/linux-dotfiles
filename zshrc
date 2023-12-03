@@ -1,4 +1,6 @@
 # Bonks config for the Zoomer Shell (Based from Luke's config)
+# Thanks Luke Smith for his config (https://github.com/LukeSmithxyz)
+#
 
 # Enable colors and change prompt:
 autoload -U colors && colors
