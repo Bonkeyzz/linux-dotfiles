@@ -1,6 +1,10 @@
 #!/bin/bash
 
-echo "Installing ZSH stuff..."
+HOME_DIR="/home/$USER"
+PLUGINS_DIR="/usr/share/zsh/plugins"
+
+echo "[!] Installing ZSH and tmux..."
+sudo pacman -Sy zsh tmux
 
 # Remove existing dotfiles
 rm ~/.zshrc
@@ -11,10 +15,6 @@ cp zshrc ~/.zshrc
 
 # Copy current aliasrc to the .config directory
 cp aliasrc ~/.config/.aliasrc
-
-HOME_DIR="/home/$USER"
-
-PLUGINS_DIR="/usr/share/zsh/plugins"
 
 # Make a plugins folder
 [ ! -d "$PLUGINS_DIR" ] && sudo mkdir /usr/share/zsh/plugins
@@ -27,37 +27,37 @@ PLUGINS_DIR="/usr/share/zsh/plugins"
 [ ! -d "$PLUGINS_DIR/zsh-autosuggestions" ] && \
 	sudo git clone https://github.com/zsh-users/zsh-autosuggestions $PLUGINS_DIR/zsh-autosuggestions || echo "Plugin: zsh-autosuggestions is already installed."
 
-echo "Installing neovim stuff..."
+
+function change_shell() {
+  read -p "[!] Do you want to change the default shell to zsh? (y/n) " iyn
+
+  case $iyn in
+    [yY] ) chsh -s "/usr/bin/zsh";;
+    [nN] ) echo "[!] Shell will not be changed.";;
+      * ) echo "[*] Invalid response.";
+      change_shell;;
+  esac
+}
+
+change_shell
+
+echo "[!] Installing NVim..."
+
+sudo pacman -Syu neovim
+
+echo "[!] Copying NVim config files/plugins..."
 
 # Neovim
 
-# Install vim-plug
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+[ -d "$HOME_DIR/.config/nvim" ] && \
+  echo "[!] Backing up old nvim config..." \
+  cp -r $HOME_DIR/.config/nvim $HOME_DIR/.config/nvim_backup
 
-# Make directory for vim plugins
+echo "[!] Copying current NVim config/plugins..."
+cp -r nvim/ $HOME_DIR/.config/
 
-VIM_PLUGGED="$HOME_DIR/.vim/plugged"
-NVIM_CONFIG="$HOME_DIR/.config/nvim"
-[ ! -d "$VIM_PLUGGED" ] && \
-	mkdir -pv "$VIM_PLUGGED" || echo "Directory: $VIM_PLUGGED exists."
-[ ! -d  "$NVIM_CONFIG" ] && \
-	mkdir -pv "$NVIM_CONFIG" || echo "Directory $NVIM_CONFIG exists."
+echo "[!] Installing required language componente for neovim.."
+sudo pacman -Sy base-devel git wget unzip python python-pip nodejs npm composer luarocks rust clang lua-language-server ruby julia go jdk-openjdk
 
-# Remove old vimrc
-rm ~/.vimrc
-
-# Copy init (that includes only the plugins to install) to home
-cp init_plugins.vim ~/.vimrc
-
-# Make a symlink
-ln -sf "$HOME_DIR/.vimrc" "$NVIM_CONFIG/init.vim"
-
-# Install all plugins
-nvim -c PlugInstall
-
-# Install the final config
-# rm ~/.vimrc
-cp init_final.vim ~/.vimrc
-
-echo "*** Done! ***"
+clear
+echo "[!] Done!"
