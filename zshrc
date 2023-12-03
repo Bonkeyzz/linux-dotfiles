@@ -1,10 +1,13 @@
-# Luke's config for the Zoomer Shell
+# Bonks config for the Zoomer Shell (Based from Luke's config)
 
 # Enable colors and change prompt:
 autoload -U colors && colors
 autoload -U vcs_info
 
-# Load version control information
+# Load TMUX
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
 
 # autoload -Uz vcs_info
 setopt PROMPT_SUBST
@@ -78,6 +81,8 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
+bindkey '^R' history-incremental-search-backward
+
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
