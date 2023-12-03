@@ -15,7 +15,6 @@ alias \
 	mkdir="mkdir -pv" \
 	g="git" \
 	ga="git add" \
-  gap="git add ." \
 	gc="git commit" \
 	gp="git push" \
 	gs="git status" \
