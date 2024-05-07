@@ -57,7 +57,7 @@ echo "[!] Copying current NVim config/plugins..."
 cp -r nvim/ $HOME_DIR/.config/
 
 echo "[!] Installing required language componente for neovim.."
-sudo pacman -Sy base-devel git wget unzip python python-pip nodejs npm composer luarocks rust clang lua-language-server ruby julia go jdk-openjdk
+sudo pacman -Sy base-devel git wget tree-sitter-cli ripgrep unzip python python-pip nodejs npm composer luarocks rust clang lua-language-server ruby julia go jdk-openjdk
 
 clear
 echo "[!] Done!"
